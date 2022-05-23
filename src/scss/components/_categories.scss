@@ -1,14 +1,27 @@
 @import '../_variables';
 
 .categories {
+  
+  
+  @media screen and (max-width: 1359px) {
+    overflow-x: scroll;
+    max-width: 665px;
+  }
+  @media screen and (max-width: 1279px) {
+    max-width: 530px;
+  }
+  @media screen and (max-width: 1023px) {
+    max-width: 330px;
+  }
   ul {
     display: flex;
+    gap: 10px;
+    padding-bottom: 5px;
 
     li {
       background-color: #f9f9f9;
       padding: 13px 30px;
       border-radius: 30px;
-      margin-right: 10px;
       font-weight: bold;
       cursor: pointer;
       transition: background-color 0.1s ease-in-out;
