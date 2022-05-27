@@ -1,5 +1,6 @@
 import React from "react"
 
+
 const PizzaBlock = ({ title, price, imageUrl, sizes, types }) => {
 
     const [activeType, setActiveType] = React.useState(0)
