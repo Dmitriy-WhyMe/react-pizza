@@ -54,6 +54,7 @@ function Home() {
             navigate(`?${queryString}`)
         }
         isMounted.current = true
+        // eslint-disable-next-line 
     }, [categoryId,sort.sortProperty,currentPage])
 
     React.useEffect(() => {
@@ -66,15 +67,16 @@ function Home() {
             }))
             isSearch.current = true
         }
+        // eslint-disable-next-line 
     }, [])
-
+    
     React.useEffect(() => {
         window.scrollTo(0, 0)
         if(!isSearch.current){
             fetchPizzas()
         }
         isSearch.current = false
-
+        // eslint-disable-next-line 
     }, [categoryId,sort.sortProperty,searchValue,currentPage])
 
     

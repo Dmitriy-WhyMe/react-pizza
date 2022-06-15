@@ -15,12 +15,16 @@ body {
   border-radius: 10px;
   max-width: 1400px;
   @media screen and (max-width: 767px) {
-    width: calc(100vw - 40px);
+    width: calc(100vw - 20px);
+    margin: 10px auto;
   }
 }
 
 .content {
   padding: 40px 0;
+  @media screen and (max-width: 767px) {
+    padding: 15px 0;
+  }
 
   &__title {
     margin: 35px 0;
@@ -76,6 +80,10 @@ body {
     display: flex;
     align-items: center;
     font-size: 32px;
+    margin: 0;
+    @media screen and (max-width: 413px) {
+     font-size: 28px;
+    }
 
     svg {
       position: relative;
@@ -101,6 +109,9 @@ body {
       margin-left: 7px;
       color: #b6b6b6;
       font-size: 18px;
+      @media(max-width: 767px){
+        font-size: 16px;
+      }
     }
 
     span,
@@ -123,17 +134,26 @@ body {
 
   &__item {
     display: flex;
+    justify-content: space-between;
     width: 100%;
     border-top: 1px solid $gray-line;
     padding-top: 30px;
     margin-top: 30px;
+    @media(max-width: 767px){
+      align-items: center;
+      gap: 3px;
+      padding-top: 15px;
+      margin-top: 15px;
+      
+    }
 
     &-img {
       display: flex;
       align-items: center;
       margin-right: 15px;
-      width: 10%;
-
+      @media(max-width: 767px){
+        display: none;
+      }
       img {
         width: 80px;
         height: 80px;
@@ -163,7 +183,7 @@ body {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: 13%;
+      gap: 5px;
 
       &-minus {
         svg {
@@ -183,11 +203,17 @@ body {
       align-items: center;
       justify-content: center;
       width: 33%;
+      @media(max-width: 767px){
+        width: initial;
+      }
 
       b {
         font-weight: bold;
         font-size: 22px;
         letter-spacing: 0.01em;
+        @media(max-width: 767px){
+          font-size: 5vw;
+        }
       }
     }
 
@@ -195,7 +221,6 @@ body {
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      width: 4%;
 
       .button {
         border-color: darken($color: $gray-line, $amount: 10);
@@ -226,6 +251,9 @@ body {
 
   &__bottom {
     margin: 50px 0;
+    @media screen and (max-width: 767px) {
+      margin: 25px 0;
+    }
 
     &-details {
       display: flex;
@@ -233,6 +261,9 @@ body {
 
       span {
         font-size: 22px;
+        @media(max-width: 767px){
+          font-size: 4.6vw;
+        }
 
         &:last-of-type {
           b {
@@ -246,12 +277,14 @@ body {
       display: flex;
       justify-content: space-between;
       margin-top: 40px;
+      gap: 10px;
 
       .go-back-btn {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 210px;
+        max-width: 210px;
+        width: 100%;
 
         border-color: darken($color: $gray-line, $amount: 10);
 
@@ -282,7 +315,8 @@ body {
       .pay-btn {
         font-size: 16px;
         font-weight: 600;
-        width: 210px;
+        max-width: 210px;
+        width: 100%;
         padding: 16px;
       }
     }
@@ -290,7 +324,6 @@ body {
 
   &--empty {
     margin: 0 auto;
-    width: 560px;
     text-align: center;
 
     h2 {
@@ -312,7 +345,8 @@ body {
 
     img {
       display: block;
-      width: 300px;
+      max-width: 300px;
+      width: 100%;
       margin: 45px auto 60px;
     }
 

@@ -3,6 +3,9 @@
 .header {
   border-bottom: 1px solid $gray-line;
   padding: 40px 0;
+  @media screen and (max-width: 767px) {
+    padding: 20px 0;
+  }
 
   .container {
     display: flex;

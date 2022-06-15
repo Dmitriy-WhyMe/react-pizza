@@ -33,3 +33,24 @@
         cursor: pointer;
     }
 }
+@media(max-width: 1279px){
+    .root{
+        left: -30px;
+    }
+    .input{
+        width: 180px;
+    }
+}
+@media(max-width: 767px){
+    .root{
+        left: 0px;
+    }
+    .input{
+        width: 300px;
+    }
+}
+@media(max-width: 374px){
+    .input{
+        width: 250px;
+    }
+}
