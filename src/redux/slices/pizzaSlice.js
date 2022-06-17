@@ -8,6 +8,7 @@ export const fetchPizzas = createAsyncThunk(
         const { data } = await axios.get(`https://628f92a1dc478523654307e6.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`)
         return data
     }
+    
 )
 
 const initialState = {
@@ -38,6 +39,8 @@ const pizzaSlice = createSlice({
         }
     }
 })
+
+export const selectPizzaData = (state) => state.pizza
 
 export const { setItems } = pizzaSlice.actions
 
