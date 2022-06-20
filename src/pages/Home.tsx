@@ -5,13 +5,12 @@ import { useSelector, useDispatch  } from 'react-redux'
 import { selectFilter, setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice'
 import Categories from '../components/Categories'
 import Sort, { sortList } from '../components/Sort'
-import PizzaBlock from '../components/PizzaBlock/'
+import PizzaBlock from '../components/PizzaBlock'
 import Skeleton from '../components/PizzaBlock/Skeleton'
 import Pagination from '../components/Pagination'
 import { fetchPizzas, selectPizzaData } from '../redux/slices/pizzaSlice'
 
-
-function Home() {
+const Home: React.FC = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const isSearch = React.useRef(false)
@@ -19,10 +18,10 @@ function Home() {
     const {categoryId, sort, currentPage, searchValue} = useSelector(selectFilter)
     const {items, status} = useSelector(selectPizzaData)
 
-    const onChangeCategory = (id) => {
+    const onChangeCategory = (id: number) => {
         dispatch(setCategoryId(id))
     }
-    const onChangePage = number => {
+    const onChangePage = (number: number) => {
         dispatch(setCurrentPage(number))
     }
 
@@ -32,13 +31,16 @@ function Home() {
         const sortBy = sort.sortProperty.replace('-','')
         const order = sort.sortProperty.includes('-') ? 'acs' : 'desc'
 
-        dispatch(fetchPizzas({
-            category,
-            search,
-            sortBy,
-            order,
-            currentPage
-        }))
+        dispatch(
+            //@ts-ignore
+            fetchPizzas({
+                category,
+                search,
+                sortBy,
+                order,
+                currentPage
+            })
+        )
         window.scrollTo(0, 0)
     }
 
@@ -75,9 +77,7 @@ function Home() {
         // eslint-disable-next-line 
     }, [categoryId,sort.sortProperty,searchValue,currentPage])
 
-    
-
-    const pizzas = items.map(obj => <PizzaBlock key={obj.id} {...obj}/>)
+    const pizzas = items.map((obj: any) => <PizzaBlock key={obj.id} {...obj}/>)
     const skeletons = [...new Array(6)].map((_, index) => <Skeleton key={index}/>)
 
     return (
