@@ -1,18 +1,19 @@
 import React from 'react'
 import qs from 'qs'
 import { useNavigate } from 'react-router-dom'
-import { useSelector, useDispatch  } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { selectFilter, setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice'
 import Categories from '../components/Categories'
 import Sort, { sortList } from '../components/Sort'
 import PizzaBlock from '../components/PizzaBlock'
 import Skeleton from '../components/PizzaBlock/Skeleton'
 import Pagination from '../components/Pagination'
-import { fetchPizzas, selectPizzaData } from '../redux/slices/pizzaSlice'
+import { fetchPizzas, SearchPizzaParams, selectPizzaData } from '../redux/slices/pizzaSlice'
+import { useAppDispatch } from '../redux/store'
 
 const Home: React.FC = () => {
     const navigate = useNavigate()
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const isSearch = React.useRef(false)
     const isMounted = React.useRef(false)
     const {categoryId, sort, currentPage, searchValue} = useSelector(selectFilter)
@@ -32,18 +33,17 @@ const Home: React.FC = () => {
         const order = sort.sortProperty.includes('-') ? 'acs' : 'desc'
 
         dispatch(
-            //@ts-ignore
             fetchPizzas({
                 category,
                 search,
                 sortBy,
                 order,
-                currentPage
+                currentPage: String(currentPage)
             })
         )
         window.scrollTo(0, 0)
     }
-
+    /*
     React.useEffect(() => {
         if(isMounted.current){
             const queryString = qs.stringify({
@@ -59,24 +59,26 @@ const Home: React.FC = () => {
 
     React.useEffect(() => {
         if(window.location.search){
-            const params = qs.parse(window.location.search.substring(1))
-            const sort = sortList.find(obj => obj.sortProperty === params.sortProperty)
+            const params = (qs.parse(window.location.search.substring(1)) as unknown) as SearchPizzaParams
+            const sort = sortList.find((obj) => obj.sortProperty === params.sortBy)
             dispatch(setFilters({
-                ...params,
-                sort
+                searchValue: params.search,
+                categoryId: Number(params.category),
+                currentPage: Number(params.currentPage),
+                sort: sort || sortList[0]
             }))
             isSearch.current = true
         }
         // eslint-disable-next-line 
     }, [])
-    
+    */
     React.useEffect(() => {
         window.scrollTo(0, 0)
         getPizzas()
-        isSearch.current = false
+        //isSearch.current = false
         // eslint-disable-next-line 
     }, [categoryId,sort.sortProperty,searchValue,currentPage])
-
+    
     const pizzas = items.map((obj: any) => <PizzaBlock key={obj.id} {...obj}/>)
     const skeletons = [...new Array(6)].map((_, index) => <Skeleton key={index}/>)
 
