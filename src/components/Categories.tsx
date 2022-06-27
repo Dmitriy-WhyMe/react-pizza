@@ -3,7 +3,7 @@ import { useWhyDidYouUpdate } from 'ahooks';
 
 type CategoriesProps = {
   value: number,
-  onChangeCategory: any
+  onChangeCategory: (target: number) => void
 }
 
 const Categories: React.FC<CategoriesProps> = React.memo(({value,onChangeCategory}) => {
